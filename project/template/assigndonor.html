@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
+    {% extends 'hospital.html' %}
+    {% block content %}
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <form class="my-4 flex-wrap my-5" action="{% url 'adddonor' data.id %}" method="post"  style="height: 500px;width: 650px;margin: auto;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;padding: 20px;">
+        {% csrf_token %}
+        <h5 style="text-align: center;font-weight: bold;">Assign Donor</h5>
+        <div class="row my-4">
+        <div class="col-6 ">
+          <label for="exampleInputEmail1">Name</label>
+          <p>{{data.reciver_id.name}}</p>
+        </div>
+        <div class="col-6 ">
+          <label for="exampleInputPassword1" >Organ Name</label>
+          <p>{{data.organ_name}}</p>
+        </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-6">
+            <label for="exampleInputPassword1">Hospital Name</label>
+            <p>{{data.reciver_id.hospital_name}}</p>
+          </div>
+          <div class="col-6">
+            <label for="exampleInputPassword1">Certificate</label>
+            <a href="{{i.certificate}}" download style="color:black;text-decoration: none;"><p>{{data.certificate}}</p></a>
+          </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-6 ">
+            <label for="exampleInputPassword1">contact</label>
+            <p>{{data.reciver_id.phone_no}}</p>
+          </div>
+          <div class="col-6 ">
+            <label for="exampleInputPassword1">Email</label>
+            <p>{{data.reciver_id.Email_id}}</p>
+          </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-6 ">
+            <input type="text" name="donorid" hidden>
+            <select class="form-select" aria-label="Default select example" name="donorid">
+                <option selected disabled>Add Donor</option>
+                {% for a in data1 %}
+                <option value="{{a.id}}">{{a.name}}</option>
+                {% endfor %}
+              </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+
+    </form>
+
+</body>
+{% endblock %}
+<!-- </html> -->

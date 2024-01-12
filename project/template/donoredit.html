@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'hospital.html' %}
+    {% block content %}
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <form class="my-4 flex-wrap " action="donoredits/{{result.id}}" method="post" enctype="multipart/form-data" style="height: 600px;width: 650px;margin: auto;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;padding: 20px;">
+    {% csrf_token %}
+    <h5 style="text-align: center;font-weight: bold;">ADD DONOR</h5>
+    <div class="form-group my-3">
+      <!-- <label for="exampleInputEmail1">Name</label> -->
+      <input type="text" class="form-control bg-light" id="exampleInputEmail1" aria-describedby="" placeholder="Name" name="name" value="{{result.name}}">
+    </div>
+    <div class="form-group my-4">
+      <!-- <label for="exampleInputPassword1">Enter Your Doctors Name</label> -->
+      <input type="text" class="form-control bg-light" id="exampleInputPassword1" placeholder="Enter Your Doctors Name" name="doctername" value="{{result.doctername}}">
+    </div>
+    <div class="row my-4">
+      <div class="col-12">
+        <!-- <label for="exampleInputPassword1">Organ Name</label> -->
+        <input type="text" class="form-control bg-light" id="exampleInputPassword1" placeholder="Organ Name" name="organname" value="{{result.Organ_name}}">
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-6 ">
+        <!-- <label for="exampleInputPassword1">Age</label> -->
+        <input type="text" class="form-control bg-light" id="exampleInputPassword1" placeholder="Age" name="age" value="{{result.age}}">
+      </div>
+      <div class="col-6 ">
+        <!-- <label for="exampleInputPassword1">Blood Group</label> -->
+        <input type="text" class="form-control bg-light" id="exampleInputPassword1" placeholder="Blood Group" name="bloodgroup" value="{{result.bloodgroup}}">
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-6 ">
+        <!-- <label for="exampleInputPassword1">Conatct</label> -->
+        <input type="text" class="form-control bg-light" id="exampleInputPassword1" placeholder="Conatct" name="phone" value="{{result.phone}}">
+      </div>
+      <div class="col-6 ">
+        <!-- <label for="exampleInputPassword1">Email</label> -->
+        <input type="email" class="form-control bg-light" id="exampleInputPassword1" placeholder="Email" name="email" value="{{result.email}}">
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-12 ">
+        <!-- <label for="exampleInputPassword1">Address</label> -->
+        <input type="text" class="form-control bg-light" id="exampleInputPassword1" placeholder="Address" name="address" value={{result.address}}>
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-6 ">
+        <label for="exampleInputPassword1">Photo</label>
+        <input type="file" class="form-control" id="exampleInputPassword1" placeholder="" name="photo">
+      </div>
+      <div class="col-6 ">
+        <label for="exampleInputPassword1">Id Proof</label>
+        <input type="file" class="form-control" id="exampleInputPassword1" placeholder="" name="idproof">
+      </div>
+    </div>
+    <div style="margin: auto; width: 100%;text-align: center;">
+
+      <button  type="submit" class="btn btn-primary m-auto  "style='width:100%'>Submit</button>
+    </div>
+    
+    </form>
+    
+    
+</body>
+{% endblock %}
+
+</html>
