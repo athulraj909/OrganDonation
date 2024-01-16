@@ -36,7 +36,7 @@ urlpatterns = [
     path('hospitalupdat/<int:id>',views.hospitalupdat,name='hospitalupdat'),
     path('hospitalupdat/hospitalupdates/<int:id>',views.hospitalupdates,name='hospitalupdates'),
     path('donor',views.donorpage,name='donor'),
-    path('adddonor',views.adddonor),
+    path('adddonors',views.adddonors, name="adddonors"),
     path('donoredit/<int:id>',views.donoredit,name='donoredit'),
     path('donoredit/donoredits/<int:id>',views.donoredits,name='donoredits'),
     path('donordelete/<int:id>',views.donordelete,name='donordelete'),

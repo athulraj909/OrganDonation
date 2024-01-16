@@ -41,7 +41,7 @@
           <tr style="height: 50px;">
             <td scope="row">{{ forloop.counter }}</td>
             <td>{{i.organ_name}}</td>
-            <td>{{i.certificate}}</td>
+            <td><a href="{{i.certificate.url}}" download>{{i.certificate}}</a></td>
             <td>{{i.hospital_id.Hospital_name}}</td>
             <td>{{i.hospital_id.phone_no}}</td>
             <td>{{i.hospital_id.Email_id}}</td>

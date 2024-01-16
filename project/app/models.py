@@ -43,7 +43,7 @@ class donor(models.Model):
     photo = models.FileField()
     idproof = models.FileField()
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Request(models.Model):
@@ -52,7 +52,7 @@ class Request(models.Model):
     hospital_id = models.ForeignKey(hospital, on_delete=models.CASCADE,null=True,blank=True)
     donor_id = models.ForeignKey(donor,on_delete=models.CASCADE,null=True,blank=True)
     organ_name = models.CharField(max_length=200,null=True,blank=True)
-    certificate = models.CharField(max_length=200,null=True,blank=True)
+    certificate = models.FileField(max_length=200,null=True,blank=True,)
     status=models.CharField(choices=status_choice,default='pending',max_length=200)
     def __str__(self):
         return self.reciver_id.name

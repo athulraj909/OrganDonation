@@ -33,7 +33,7 @@ def hospitalreg(request):
         if hospital.objects.filter(phone_no=phone).exists():
             return render(request,'hospitalreg.html',{'message':'Contact already exists'})
         
-        data = hospital(Hospital_name=name,Email_id=email,phone_no=phone,location=location,password=password)
+        data = hospital.objects.create(Hospital_name=name,Email_id=email,phone_no=phone,location=location,password=password)
         data.save()
         return redirect(logins)
     else:
@@ -53,7 +53,7 @@ def recieverreg(request):
         if receiver.objects.filter(phone_no=phone).exists():
             return render(request,'recieverreg.html',{'message':'Contact already exists'})
         
-        data = receiver(name=name,Address=address,Email_id=email,phone_no=phone,hospital_name=hospitalname,password=password)
+        data = receiver.objects.create(name=name,Address=address,Email_id=email,phone_no=phone,hospital_name=hospitalname,password=password)
         data.save()
         return redirect(logins)
     else:
@@ -143,7 +143,7 @@ def addrequest(request):
         organname = request.POST.get('organname')
         certificate = request.FILES['certificate']
         context = {'message':'successfully requested'}
-        data = Request(reciver_id=user,organ_name=organname,certificate=certificate)
+        data = Request.objects.create(reciver_id=user,organ_name=organname,certificate=certificate)
         data.save()
         return render(request,'addrequest.html',context)
     else:
@@ -188,7 +188,7 @@ def donorpage(request):
     return render(request,'Donor.html',{'data1':data1})
 
 
-def adddonor(request):
+def adddonors(request):
     if request.method == 'POST':
         id=request.session['hid']
         name = request.POST.get('name')
@@ -203,7 +203,7 @@ def adddonor(request):
         photo = request.FILES.get('photo')
         idproof = request.FILES.get('idproof')
         data1 = hospital.objects.get(id=id)
-        data = donor(hospital_id=data1,name=name,doctername=doctername,Organ_name=organname,gender=gender,age=age,bloodgroup=bloodgroup,address=address,email=email,phone=phone,photo=photo,idproof=idproof)
+        data = donor.objects.create(hospital_id=data1,name=name,doctername=doctername,Organ_name=organname,gender=gender,age=age,bloodgroup=bloodgroup,address=address,email=email,phone=phone,photo=photo,idproof=idproof)
         data.save()
         return redirect(donorpage)
     else:
@@ -233,9 +233,9 @@ def donoredits(request,id):
         data.email = request.POST.get('email')
         data.address = request.POST.get('address')
         if 'photo' in request.FILES:
-            data.photo = request.FILES('photo')
+            data.photo = request.FILES['photo']
         if 'idproof' in request.FILES:
-            data.idproof = request.FILES('idproof')
+            data.idproof = request.FILES['idproof']
         data.save()
         return redirect(donorpage)
 
@@ -250,10 +250,14 @@ def donordelete(request,id):
 def viewrequest(request):
     a = request.session['hid']
     hospit = hospital.objects.get(id=a)
+    data = Request.objects.all()
+    # print(data.certificate)
     hos = Request.objects.filter(hospital_id=a)
     dat=Request.objects.exclude(hospital_id=a).exclude(status='Accepted').exclude(status='Assigned')
+
     all_requests = list(hos) + list(dat)
     result = donor.objects.filter(hospital_id=hospit)
+
     return render(request,'viewrequest.html',{'data':all_requests,'result':result})
 
 
